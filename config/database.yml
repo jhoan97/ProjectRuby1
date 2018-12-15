@@ -23,3 +23,24 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+default: &default
+  adapter: postgresql
+  encoding: UTF8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+development:
+  <<: *default
+  database: blog_app_um_development
+  username: 'cabox'
+  password: 'password'
+  #host: localhost
+  #port: 5432
+  #schema_search_path: myapp,sharedapp,public
+  #min_messages: notice
+test:
+  <<: *default
+  database: blog_app_um_test
+  username: 'cabox'
+  password: 'password'
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
